@@ -3,27 +3,45 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		612E3CDD2619B47600996BDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E3CDC2619B47600996BDA /* AppDelegate.swift */; };
 		612E3CDF2619B47600996BDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E3CDE2619B47600996BDA /* SceneDelegate.swift */; };
-		612E3CE12619B47600996BDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E3CE02619B47600996BDA /* ViewController.swift */; };
 		612E3CE42619B47600996BDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 612E3CE22619B47600996BDA /* Main.storyboard */; };
 		612E3CE62619B47900996BDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 612E3CE52619B47900996BDA /* Assets.xcassets */; };
 		612E3CE92619B47900996BDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 612E3CE72619B47900996BDA /* LaunchScreen.storyboard */; };
+		619EAEFF261BC91B00CB637B /* NudgesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EAEFD261BC91B00CB637B /* NudgesListVC.swift */; };
+		619EAF00261BC91B00CB637B /* NewNudgeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EAEFE261BC91B00CB637B /* NewNudgeVC.swift */; };
+		619EAF03261BC93000CB637B /* NudgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EAF02261BC93000CB637B /* NudgeCell.swift */; };
+		619EAF07261BC93C00CB637B /* NudgeTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EAF05261BC93C00CB637B /* NudgeTitleLabel.swift */; };
+		619EAF08261BC93C00CB637B /* NudgeBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EAF06261BC93C00CB637B /* NudgeBodyLabel.swift */; };
+		619EAF0B261BC94400CB637B /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EAF0A261BC94400CB637B /* Nudge.swift */; };
+		619EAF0E261BC94B00CB637B /* NudgeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EAF0D261BC94B00CB637B /* NudgeDelegate.swift */; };
+		619EAF11261BC95200CB637B /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EAF10261BC95200CB637B /* RealmService.swift */; };
+		94D83056B1BCFF701DDCC6D6 /* Pods_Nudge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D31866C69AB4AE5B49255FE /* Pods_Nudge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		612E3CD92619B47600996BDA /* Nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		612E3CDC2619B47600996BDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		612E3CDE2619B47600996BDA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		612E3CE02619B47600996BDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		612E3CE32619B47600996BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		612E3CE52619B47900996BDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		612E3CE82619B47900996BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		612E3CEA2619B47900996BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		619EAEFD261BC91B00CB637B /* NudgesListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudgesListVC.swift; sourceTree = "<group>"; };
+		619EAEFE261BC91B00CB637B /* NewNudgeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNudgeVC.swift; sourceTree = "<group>"; };
+		619EAF02261BC93000CB637B /* NudgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudgeCell.swift; sourceTree = "<group>"; };
+		619EAF05261BC93C00CB637B /* NudgeTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudgeTitleLabel.swift; sourceTree = "<group>"; };
+		619EAF06261BC93C00CB637B /* NudgeBodyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudgeBodyLabel.swift; sourceTree = "<group>"; };
+		619EAF0A261BC94400CB637B /* Nudge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nudge.swift; sourceTree = "<group>"; };
+		619EAF0D261BC94B00CB637B /* NudgeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudgeDelegate.swift; sourceTree = "<group>"; };
+		619EAF10261BC95200CB637B /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		9D31866C69AB4AE5B49255FE /* Pods_Nudge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nudge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9BF633326EB48AA62C23FA7 /* Pods-Nudge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nudge.release.xcconfig"; path = "Target Support Files/Pods-Nudge/Pods-Nudge.release.xcconfig"; sourceTree = "<group>"; };
+		F2524C7169C41BE0B44BC711 /* Pods-Nudge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nudge.debug.xcconfig"; path = "Target Support Files/Pods-Nudge/Pods-Nudge.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +49,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D83056B1BCFF701DDCC6D6 /* Pods_Nudge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40273A384AD3AE663C3836A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9D31866C69AB4AE5B49255FE /* Pods_Nudge.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		612E3CD02619B47600996BDA = {
 			isa = PBXGroup;
 			children = (
 				612E3CDB2619B47600996BDA /* Nudge */,
 				612E3CDA2619B47600996BDA /* Products */,
+				A6C42E317D872D1A516653B4 /* Pods */,
+				40273A384AD3AE663C3836A3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +85,87 @@
 		612E3CDB2619B47600996BDA /* Nudge */ = {
 			isa = PBXGroup;
 			children = (
-				612E3CDC2619B47600996BDA /* AppDelegate.swift */,
-				612E3CDE2619B47600996BDA /* SceneDelegate.swift */,
-				612E3CE02619B47600996BDA /* ViewController.swift */,
-				612E3CE22619B47600996BDA /* Main.storyboard */,
-				612E3CE52619B47900996BDA /* Assets.xcassets */,
-				612E3CE72619B47900996BDA /* LaunchScreen.storyboard */,
+				619EAEF8261AD74800CB637B /* Realm */,
+				619EAEF4261AD72B00CB637B /* Protocols */,
+				619EAEF7261AD73E00CB637B /* Model */,
+				619EAEF5261AD73300CB637B /* Custom Views */,
+				619EAEF6261AD73900CB637B /* Screens */,
+				619EAEFA261AD76000CB637B /* Support */,
 				612E3CEA2619B47900996BDA /* Info.plist */,
 			);
 			path = Nudge;
+			sourceTree = "<group>";
+		};
+		619EAEF4261AD72B00CB637B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				619EAF0D261BC94B00CB637B /* NudgeDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		619EAEF5261AD73300CB637B /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				619EAF06261BC93C00CB637B /* NudgeBodyLabel.swift */,
+				619EAF05261BC93C00CB637B /* NudgeTitleLabel.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		619EAEF6261AD73900CB637B /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				619EAEFE261BC91B00CB637B /* NewNudgeVC.swift */,
+				619EAEFD261BC91B00CB637B /* NudgesListVC.swift */,
+				612E3CE72619B47900996BDA /* LaunchScreen.storyboard */,
+				612E3CE22619B47600996BDA /* Main.storyboard */,
+				619EAEF9261AD75200CB637B /* Cells */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		619EAEF7261AD73E00CB637B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				619EAF0A261BC94400CB637B /* Nudge.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		619EAEF8261AD74800CB637B /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				619EAF10261BC95200CB637B /* RealmService.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		619EAEF9261AD75200CB637B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				619EAF02261BC93000CB637B /* NudgeCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		619EAEFA261AD76000CB637B /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				612E3CDC2619B47600996BDA /* AppDelegate.swift */,
+				612E3CDE2619B47600996BDA /* SceneDelegate.swift */,
+				612E3CE52619B47900996BDA /* Assets.xcassets */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		A6C42E317D872D1A516653B4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F2524C7169C41BE0B44BC711 /* Pods-Nudge.debug.xcconfig */,
+				A9BF633326EB48AA62C23FA7 /* Pods-Nudge.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 612E3CED2619B47900996BDA /* Build configuration list for PBXNativeTarget "Nudge" */;
 			buildPhases = (
+				68AD1F5714809FF0545CAE16 /* [CP] Check Pods Manifest.lock */,
 				612E3CD52619B47600996BDA /* Sources */,
 				612E3CD62619B47600996BDA /* Frameworks */,
 				612E3CD72619B47600996BDA /* Resources */,
+				5B6E2CCD896B995EB97D5BA5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,14 +235,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5B6E2CCD896B995EB97D5BA5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nudge/Pods-Nudge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nudge/Pods-Nudge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nudge/Pods-Nudge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68AD1F5714809FF0545CAE16 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nudge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		612E3CD52619B47600996BDA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				612E3CE12619B47600996BDA /* ViewController.swift in Sources */,
 				612E3CDD2619B47600996BDA /* AppDelegate.swift in Sources */,
+				619EAF0B261BC94400CB637B /* Nudge.swift in Sources */,
+				619EAF00261BC91B00CB637B /* NewNudgeVC.swift in Sources */,
+				619EAEFF261BC91B00CB637B /* NudgesListVC.swift in Sources */,
+				619EAF08261BC93C00CB637B /* NudgeBodyLabel.swift in Sources */,
 				612E3CDF2619B47600996BDA /* SceneDelegate.swift in Sources */,
+				619EAF0E261BC94B00CB637B /* NudgeDelegate.swift in Sources */,
+				619EAF03261BC93000CB637B /* NudgeCell.swift in Sources */,
+				619EAF07261BC93C00CB637B /* NudgeTitleLabel.swift in Sources */,
+				619EAF11261BC95200CB637B /* RealmService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +435,14 @@
 		};
 		612E3CEE2619B47900996BDA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2524C7169C41BE0B44BC711 /* Pods-Nudge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y28H5N22JE;
 				INFOPLIST_FILE = Nudge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,12 +456,14 @@
 		};
 		612E3CEF2619B47900996BDA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9BF633326EB48AA62C23FA7 /* Pods-Nudge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y28H5N22JE;
 				INFOPLIST_FILE = Nudge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
