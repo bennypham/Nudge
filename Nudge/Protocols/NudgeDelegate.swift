@@ -8,6 +8,6 @@
 import Foundation
 
 protocol NudgeDelegate {
-    func addReminder(_ nudge: Nudge)
-    func editReminder(_ nudge: Nudge)
+    func addReminder()
+    func editReminder()
 }

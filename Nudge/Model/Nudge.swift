@@ -5,7 +5,7 @@
 //  Created by Benny Pham on 11/10/20.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
 class Nudge: Object {
@@ -25,5 +25,9 @@ class Nudge: Object {
         self.body = body
         self.date = date
     }
+    
+//    static func == (lhs: Nudge, rhs: Nudge) -> Bool {
+//        return lhs._id == rhs._id && lhs.title == rhs.title && lhs.body == rhs.body && lhs.date == rhs.date
+//    }
     
 }

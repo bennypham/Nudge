@@ -116,8 +116,8 @@
 		619EAEF6261AD73900CB637B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				619EAEFE261BC91B00CB637B /* NewNudgeVC.swift */,
 				619EAEFD261BC91B00CB637B /* NudgesListVC.swift */,
+				619EAEFE261BC91B00CB637B /* NewNudgeVC.swift */,
 				612E3CE72619B47900996BDA /* LaunchScreen.storyboard */,
 				612E3CE22619B47600996BDA /* Main.storyboard */,
 				619EAEF9261AD75200CB637B /* Cells */,

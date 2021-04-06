@@ -37,8 +37,9 @@ class NudgesListVC: UIViewController {
 //        print(realm.configuration.fileURL?.path)
         
         notificationToken = realm.observe({ (notification, realm) in
-            print("deleting nudge")
+            print("realm observe")
             self.updateData(on: self.nudges)
+//            self.updateData2()
         })
         
 //        requestNotificationPermission()
@@ -51,13 +52,10 @@ class NudgesListVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         notificationToken?.invalidate()
     }
     
     // MARK: - Functions
-    
-    
 //    func requestNotificationPermission() {
 //        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
 //            success, error in
@@ -108,24 +106,27 @@ class NudgesListVC: UIViewController {
                 completion(false)
                 return
             }
-            let realm = try! Realm()
-            let tmpNudge = realm.objects(Nudge.self).filter("_id == '\(nudge._id)'")
+            
+            
             do {
                 try self.realm.write{
-                    self.realm.delete(tmpNudge)
+                    self.realm.delete(nudge)
                 }
             } catch {
                 print("Error trying to delete")
             }
 
-            
 //            var snapshot = self.dataSource.snapshot()
-//            snapshot.deleteItems([nudge])
-//            self.dataSource.apply(snapshot, animatingDifferences: true)
+//            snapshot.deleteSections([.main])
+//            snapshot.deleteItems(Array(self.nudges))
+//            snapshot.reloadItems(Array(self.nudges))
+//            DispatchQueue.main.async {
+//                self.dataSource.apply(snapshot, animatingDifferences: true)
+//            }
 
 
-            let reminders = self.realm.objects(Nudge.self)
-            self.updateData(on: reminders)
+//            let reminders = self.realm.objects(Nudge.self)
+//            self.updateData(on: self.nudges)
 
             completion(true)
         }
@@ -155,10 +156,21 @@ class NudgesListVC: UIViewController {
         var snapshot = RemindersSnapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(Array(nudges))
+        snapshot.reloadItems(Array(nudges))
         DispatchQueue.main.async {
-            self.dataSource.apply(snapshot, animatingDifferences: true)
+            self.dataSource.apply(snapshot, animatingDifferences: false)
         }
     }
+    
+    
+    func updateData2() {
+        var snapshot = self.dataSource.snapshot()
+        snapshot.deleteSections([.main])
+        snapshot.deleteItems(Array(self.nudges))
+        snapshot.reloadItems(Array(self.nudges))
+        self.dataSource.apply(snapshot, animatingDifferences: false)
+    }
+
     
     func schedulePushNotification(with nudge: Nudge) {
         let content = UNMutableNotificationContent()
@@ -190,12 +202,11 @@ class NudgesListVC: UIViewController {
 }
 
 // MARK: - UICollectionViewDelegate
-
 extension NudgesListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        collectionView.deselectItem(at: indexPath, animated: true)
         guard let reminder = self.dataSource.itemIdentifier(for: indexPath) else {
-            collectionView.deselectItem(at: indexPath, animated: true)
             return
         }
         
@@ -208,15 +219,11 @@ extension NudgesListVC: UICollectionViewDelegate {
 }
 
 // MARK: - ReminderDelegate
-
 extension NudgesListVC: NudgeDelegate {
     
     
-    // Add reminder delegate function
-    func addReminder(_ nudge: Nudge) {
+    func addReminder() {
         self.dismiss(animated: true) {
-    
-            // snapshot for new reminder
             self.updateData(on: self.nudges)
             
             // schedule push notification for reminder
@@ -225,23 +232,12 @@ extension NudgesListVC: NudgeDelegate {
     }
     
     
-    // Edit reminder delegate function
-    func editReminder(_ nudge: Nudge) {
+    func editReminder() {
         self.dismiss(animated: true) {
-            
             self.updateData(on: self.nudges)
-
-
+            
             // schedule push notification for reminder
 //            self.schedulePushNotification(with: reminder)
-        }
-    }
-}
-
-extension Results {
-    func toArray() -> [Element] {
-        return compactMap {
-            $0
         }
     }
 }

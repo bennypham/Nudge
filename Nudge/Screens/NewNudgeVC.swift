@@ -67,7 +67,6 @@ class NewNudgeVC: UIViewController, UITextFieldDelegate {
         } else {
             navigationItem.title = "Add New Nudge"
         }
-        navigationItem.title = "Add New Nudge"
         navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(handleSave))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(handleCancel))
@@ -85,18 +84,16 @@ class NewNudgeVC: UIViewController, UITextFieldDelegate {
         let realm = try! Realm()
         do {
             try realm.write {
-                nudge.title = titleField.text!
-                nudge.body = bodyField.text!
-                nudge.date = datePicker.date
+                let updatedNudge = nudge
+                updatedNudge!.title = titleField.text!
+                updatedNudge!.body = bodyField.text!
+                updatedNudge!.date = datePicker.date
+                nudge = updatedNudge
             }
         } catch {
             print("Error in updating nudge")
         }
-        guard let updatedNudge = nudge else {
-            print("nudge was empty")
-            return
-        }
-        delegate?.editReminder(updatedNudge)
+        delegate?.editReminder()
     }
     
     
@@ -132,8 +129,9 @@ class NewNudgeVC: UIViewController, UITextFieldDelegate {
         } catch {
             print("Error trying to update")
         }
-        delegate?.addReminder(newNudge)
+        delegate?.addReminder()
     }
+    
     
     // MARK: - Selectors
     @objc func handleSave() {
@@ -145,23 +143,6 @@ class NewNudgeVC: UIViewController, UITextFieldDelegate {
                 addNewNudge()
             }
         }
-        
-//        if let title = titleField.text, !title.isEmpty,
-//           let body = bodyField.text, !body.isEmpty {
-//            let date = datePicker.date
-//            let identifier = ""
-//            let realm = try! Realm()
-//            let newNudge = Nudge(title: title, body: body, date: date, _id: identifier)
-//            do {
-//                try realm.write {
-//                    realm.add(newNudge)
-//                }
-//            } catch {
-//                print("Error trying to update")
-//            }
-//            nudge = newNudge
-//            delegate?.addReminder(newNudge)
-//        }
     }
     
     @objc func handleCancel() {
