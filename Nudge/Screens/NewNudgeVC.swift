@@ -24,6 +24,7 @@ class NewNudgeVC: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
+    
     let bodyField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter Description"
@@ -33,6 +34,7 @@ class NewNudgeVC: UIViewController, UITextFieldDelegate {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    
     
     let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -93,7 +95,7 @@ class NewNudgeVC: UIViewController, UITextFieldDelegate {
         } catch {
             print("Error in updating nudge")
         }
-        delegate?.editReminder()
+        delegate?.editNudge(nudge: nudge)
     }
     
     
@@ -129,7 +131,7 @@ class NewNudgeVC: UIViewController, UITextFieldDelegate {
         } catch {
             print("Error trying to update")
         }
-        delegate?.addReminder()
+        delegate?.addNudge(nudge: newNudge)
     }
     
     
@@ -145,15 +147,16 @@ class NewNudgeVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
     @objc func handleCancel() {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 // MARK: - Extension
 
 extension NewNudgeVC {
+    
     
     private func configureTitleField() {
         view.addSubview(titleField)
@@ -164,6 +167,7 @@ extension NewNudgeVC {
         titleField.becomeFirstResponder()
     }
     
+    
     private func configureBodyField() {
         view.addSubview(bodyField)
         bodyField.topAnchor.constraint(equalTo: titleField.bottomAnchor, constant: 20).isActive = true
@@ -171,6 +175,7 @@ extension NewNudgeVC {
         bodyField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset).isActive = true
         bodyField.heightAnchor.constraint(equalToConstant: 52).isActive = true
     }
+    
     
     private func configureDatePicker() {
         view.addSubview(datePicker)

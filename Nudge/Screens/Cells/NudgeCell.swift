@@ -9,7 +9,7 @@ import UIKit
 
 class NudgeCell: UICollectionViewCell {
     
-    static let reuseID = "ReminderCell"
+    static let reuseID = "NudgeCell"
     let titleLabel = NudgeTitleLabel(textAlignment: .left, fontSize: 25)
     let bodyLabel = NudgeBodyLabel(textAlignment: .left)
     let dateLabel = NudgeBodyLabel(textAlignment: .left)

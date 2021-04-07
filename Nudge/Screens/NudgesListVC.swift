@@ -11,8 +11,8 @@ import RealmSwift
 
 
 typealias UICollectionViewCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Nudge>
-typealias ReminderDataSource = UICollectionViewDiffableDataSource<NudgesListVC.Section, Nudge>
-typealias RemindersSnapshot = NSDiffableDataSourceSnapshot<NudgesListVC.Section, Nudge>
+typealias NudgeDataSource = UICollectionViewDiffableDataSource<NudgesListVC.Section, Nudge>
+typealias NudgeSnapshot = NSDiffableDataSourceSnapshot<NudgesListVC.Section, Nudge>
 
 
 class NudgesListVC: UIViewController {
@@ -27,8 +27,7 @@ class NudgesListVC: UIViewController {
     var notificationToken : NotificationToken?
     
     var collectionView: UICollectionView!
-    var dataSource: ReminderDataSource!
-    
+    var dataSource: NudgeDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +36,14 @@ class NudgesListVC: UIViewController {
 //        print(realm.configuration.fileURL?.path)
         
         notificationToken = realm.observe({ (notification, realm) in
-            print("realm observe")
-            self.updateData(on: self.nudges)
-//            self.updateData2()
+            print("Notification Realm Observe")
+            self.configureDataSource()
         })
         
-//        requestNotificationPermission()
+        requestNotificationPermission()
         configureNavigationController()
         configureCollectionView()
         configureDataSource()
-        updateData(on: nudges)
     }
     
     
@@ -55,23 +52,24 @@ class NudgesListVC: UIViewController {
         notificationToken?.invalidate()
     }
     
+    
     // MARK: - Functions
-//    func requestNotificationPermission() {
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
-//            success, error in
-//
-//            if success {
-//                print("Schedule Notification")
-//            } else if let error = error {
-//                print("Error: \(error)")
-//            }
-//        })
-//    }
+    func requestNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
+            success, error in
+
+            if success {
+                print("Schedule Notification")
+            } else if let error = error {
+                print("Error: \(error)")
+            }
+        })
+    }
     
     
     private func configureNavigationController() {
         self.navigationItem.leftBarButtonItem = editButtonItem
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(addNewReminder))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(addNewNudge))
     }
     
     
@@ -107,7 +105,6 @@ class NudgesListVC: UIViewController {
                 return
             }
             
-            
             do {
                 try self.realm.write{
                     self.realm.delete(nudge)
@@ -115,18 +112,6 @@ class NudgesListVC: UIViewController {
             } catch {
                 print("Error trying to delete")
             }
-
-//            var snapshot = self.dataSource.snapshot()
-//            snapshot.deleteSections([.main])
-//            snapshot.deleteItems(Array(self.nudges))
-//            snapshot.reloadItems(Array(self.nudges))
-//            DispatchQueue.main.async {
-//                self.dataSource.apply(snapshot, animatingDifferences: true)
-//            }
-
-
-//            let reminders = self.realm.objects(Nudge.self)
-//            self.updateData(on: self.nudges)
 
             completion(true)
         }
@@ -137,37 +122,21 @@ class NudgesListVC: UIViewController {
     
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionViewCellRegistration{ (cell: UICollectionViewListCell, _, nudge: Nudge) in
-            var content = cell.defaultContentConfiguration()
+        let cellRegistration = UICollectionViewCellRegistration{ (cell: UICollectionViewListCell, indexPath, nudge: Nudge) in
+            var content = UIListContentConfiguration.subtitleCell()
             content.text = nudge.title
             content.secondaryText = nudge.body
-            cell.accessories = [.disclosureIndicator()]
             cell.contentConfiguration = content
+            cell.accessories = [.disclosureIndicator()]
         }
         
-        dataSource = ReminderDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, nudge) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: nudge)
-            return cell
+        dataSource = NudgeDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, nudge) -> UICollectionViewCell? in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: nudge)
         })
-    }
-    
-    
-    func updateData(on nudges: Results<Nudge>) {
-        var snapshot = RemindersSnapshot()
+        
+        var snapshot = NudgeSnapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(Array(nudges))
-        snapshot.reloadItems(Array(nudges))
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapshot, animatingDifferences: false)
-        }
-    }
-    
-    
-    func updateData2() {
-        var snapshot = self.dataSource.snapshot()
-        snapshot.deleteSections([.main])
-        snapshot.deleteItems(Array(self.nudges))
-        snapshot.reloadItems(Array(self.nudges))
         self.dataSource.apply(snapshot, animatingDifferences: false)
     }
 
@@ -185,18 +154,18 @@ class NudgesListVC: UIViewController {
         
         UNUserNotificationCenter.current().add(requestNotification, withCompletionHandler: { error in
             if error != nil {
-                print("There was an error scheduling a reminder")
+                print("There was an error scheduling a nudge")
             }
         })
     }
 
     
     // MARK: - Selectors
-    @objc func addNewReminder() {
-        let newRemindersVC = NewNudgeVC()
-        newRemindersVC.delegate = self
+    @objc func addNewNudge() {
+        let newNudgesVC = NewNudgeVC()
+        newNudgesVC.delegate = self
         
-        navigationController?.present(UINavigationController(rootViewController: newRemindersVC), animated: true, completion: nil)
+        navigationController?.present(UINavigationController(rootViewController: newNudgesVC), animated: true, completion: nil)
     }
     
 }
@@ -206,38 +175,37 @@ extension NudgesListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         collectionView.deselectItem(at: indexPath, animated: true)
-        guard let reminder = self.dataSource.itemIdentifier(for: indexPath) else {
+        guard let nudge = self.dataSource.itemIdentifier(for: indexPath) else {
+            collectionView.deselectItem(at: indexPath, animated: true)
             return
         }
         
-        let editReminderVC = NewNudgeVC()
-        editReminderVC.delegate = self
-        editReminderVC.nudge = reminder
+        let editNudgeVC = NewNudgeVC()
+        editNudgeVC.delegate = self
+        editNudgeVC.nudge = nudge
         
-        navigationController?.present(UINavigationController(rootViewController: editReminderVC), animated: true)
+        navigationController?.present(UINavigationController(rootViewController: editNudgeVC), animated: true)
     }
 }
 
-// MARK: - ReminderDelegate
+// MARK: - NudgeDelegate
 extension NudgesListVC: NudgeDelegate {
     
     
-    func addReminder() {
+    func addNudge(nudge: Nudge) {
         self.dismiss(animated: true) {
-            self.updateData(on: self.nudges)
             
-            // schedule push notification for reminder
-//            self.schedulePushNotification(with: reminder)
+            // schedule push notification for nudge
+            self.schedulePushNotification(with: nudge)
         }
     }
     
     
-    func editReminder() {
+    func editNudge(nudge: Nudge) {
         self.dismiss(animated: true) {
-            self.updateData(on: self.nudges)
             
-            // schedule push notification for reminder
-//            self.schedulePushNotification(with: reminder)
+            // schedule push notification for nudge
+            self.schedulePushNotification(with: nudge)
         }
     }
 }
